@@ -1,0 +1,18 @@
+﻿body
+{color:#FF0000;
+ font-family:Times New Roman
+ Berlin Sans FB Demi,Georgia
+ 
+ 
+}
+h1,h11
+{
+	font-family: 'Times New Roman' , Times, serif;
+	font-size: xx-small;
+	table-layout: auto;
+	border-collapse: collapse;
+	border-spacing: inherit;
+	empty-cells: hide;
+	caption-side: bottom;
+	list-style-type: disc;
+}
