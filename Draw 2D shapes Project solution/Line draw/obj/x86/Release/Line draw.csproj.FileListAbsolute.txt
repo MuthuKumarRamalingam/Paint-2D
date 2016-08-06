@@ -1,0 +1,3 @@
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Release\Line_draw.Drawing.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Release\Line_draw.Properties.Resources.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Release\Line draw.csproj.GenerateResource.Cache
