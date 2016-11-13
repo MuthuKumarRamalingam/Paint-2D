@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace Line_draw
+namespace MyPaint
 {
     public class LineBasic
     {
@@ -106,32 +106,26 @@ namespace Line_draw
             return new Rectangle(Point1[index], Size[index]);
         }
 
-        public void Add(Point _Point1, Point _Point2, Color _Color)
+        public void Add(Point stPoint, Point endPoint, Color _Color)
         {
 
-            int Width = _Point2.X - _Point1.X;
-            int Height = _Point2.Y - _Point1.Y;
+            int Width = endPoint.X - stPoint.X;
+            int Height = endPoint.Y - stPoint.Y;
 
             if (Width < 0)
-                _Point1 = new Point((_Point1.X + Width), _Point1.Y);
+                stPoint = new Point((stPoint.X + Width), stPoint.Y);
             if (Height < 0)
-                _Point1 = new Point(_Point1.X, (_Point1.Y + Height));
+                stPoint = new Point(stPoint.X, (stPoint.Y + Height));
 
             Height = Math.Abs(Height);
             Width = Math.Abs(Width);
 
-            Point1.Add(_Point1);
+            Point1.Add(stPoint);
             Size.Add(new Size(Width, Height));
             Color.Add(_Color);
         }
         #endregion
     }
 
-    public enum Drawmode
-    {
-        Line,
-        Ellipse,
-        Rectangle,
-        PolyGon
-    }
+   
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using CommonTools;
 
-namespace Line_draw
+namespace MyPaint
 {
     static class Program
     {
@@ -21,7 +22,7 @@ namespace Line_draw
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Mailer.SendNotification(ex.ToString(), true);
             }
         }
     }

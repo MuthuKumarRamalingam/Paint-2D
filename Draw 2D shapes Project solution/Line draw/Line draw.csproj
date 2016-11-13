@@ -8,8 +8,8 @@
     <ProjectGuid>{03BDBB1A-B431-4A69-8A7E-690F7486C038}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Line_draw</RootNamespace>
-    <AssemblyName>Line draw</AssemblyName>
+    <RootNamespace>MyPaint</RootNamespace>
+    <AssemblyName>MyPaint</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -66,6 +66,14 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Documents\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Documents\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,17 +86,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyApplication\BasicShapes.cs" />
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasicEntities\RectangleInfo.cs" />
+    <Compile Include="FileStructure\ShapesData.cs" />
+    <Compile Include="MyApplication\RenderInfo.cs" />
+    <Compile Include="MyApplication\CommonHelper.cs" />
     <Compile Include="MyApplication\Drawing.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MyApplication\Drawing.Designer.cs">
       <DependentUpon>Drawing.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyApplication\ExtensionMethods.cs" />
-    <Compile Include="MyApplication\ShapeData.cs" />
+    <Compile Include="BasicEntities\ShapeInfo.cs" />
+    <Compile Include="BasicEntities\Ishapes.cs" />
+    <Compile Include="BasicEntities\LineInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyApplication\Drawing.resx">
       <DependentUpon>Drawing.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +121,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -132,6 +154,15 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonTools\CommonTools.csproj">
+      <Project>{2CFE159E-77B9-4933-B023-CC34FE2C8986}</Project>
+      <Name>CommonTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

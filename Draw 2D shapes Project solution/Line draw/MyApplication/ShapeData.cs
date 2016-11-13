@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Line_draw
+namespace MyPaint
 {
     public class ShapeData
     {
@@ -22,6 +22,7 @@ namespace Line_draw
         #endregion
 
         #region private variables
+        private int version = 0;
 
         private LineBasic objLine = new LineBasic();
         private EllipseBasic objEllipse = new EllipseBasic();
@@ -30,6 +31,12 @@ namespace Line_draw
         #endregion
 
         #region public properties
+        public int Version
+        {
+            get { return version; }
+            set { version = value; }
+        }
+
         public LineBasic ObjLine
         {
             get { return objLine; }
@@ -49,38 +56,35 @@ namespace Line_draw
         #endregion
 
         #region methods
+
         internal void OpenFile()
         {
-            OpenFileDialog OpenDlg = new OpenFileDialog();
-            OpenDlg.Filter = "MyExtension (*.MyExt)|*MyExt";
-            if (OpenDlg.ShowDialog() == DialogResult.OK)
+            string path;
+            if (FileOperations.GetOpenFilePath(out path))
             {
-                string Data = File.ReadAllText(OpenDlg.FileName);
-                //StreamReader Reader = new StreamReader(OpenDlg.FileName);
-                //while (!Reader.EndOfStream)
-                //    Data = Reader.ReadLine();
-                //Reader.Close();
-                Clear();
-                if (Data.IsNotNullorEmpty())
-                    JsonConvert.PopulateObject(Data, this);
-
-            }
-        }
-        internal void SaveFile()
-        {
-            SaveFileDialog SaveDlg = new SaveFileDialog();
-            SaveDlg.Filter = "MyExtension (*.MyExt)|*MyExt";
-            if (SaveDlg.ShowDialog() == DialogResult.OK)
-            {
-                string Data = JsonConvert.SerializeObject(this);
-
-                using (StreamWriter Writer = new StreamWriter(SaveDlg.FileName + ".MyExt"))
+                string Data;
+                if (FileOperations.Read(path, out Data))
                 {
-                    Writer.Write(Data);
-                    Writer.Close();
+                    Clear();
+                    if (Data.IsNotNullorEmpty())
+                        JsonConvert.PopulateObject(Data, this);
                 }
             }
         }
+
+        internal void SaveFile()
+        {
+            string Data = JsonConvert.SerializeObject(this);
+
+            string path;
+            if (FileOperations.GetSavePath(out path))
+            {
+                if (FileOperations.Write(path, Data))
+                    MessageBox.Show("Successfully saved");
+            }
+
+        }
+
         internal void Clear()
         {
             objLine = new LineBasic();

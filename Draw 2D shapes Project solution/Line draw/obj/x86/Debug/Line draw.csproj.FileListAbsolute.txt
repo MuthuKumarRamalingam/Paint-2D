@@ -21,15 +21,3 @@ C:\Users\USER\Desktop\Line draw Project solution\Line draw\obj\x86\Debug\Line dr
 C:\Users\USER\Desktop\Line draw Project solution\Line draw\obj\x86\Debug\Line draw.application
 C:\Users\USER\Desktop\Line draw Project solution\Line draw\obj\x86\Debug\Line draw.exe
 C:\Users\USER\Desktop\Line draw Project solution\Line draw\obj\x86\Debug\Line draw.pdb
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\bin\Debug\Line draw.exe.manifest
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\bin\Debug\Line draw.application
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\bin\Debug\Line draw.exe
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\bin\Debug\Line draw.pdb
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.csprojResolveAssemblyReference.cache
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line_draw.Drawing.resources
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line_draw.Properties.Resources.resources
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.csproj.GenerateResource.Cache
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.exe.manifest
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.application
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.exe
-C:\Users\USER\Desktop\Draw 2D shapes Project solution\Line draw\obj\x86\Debug\Line draw.pdb
