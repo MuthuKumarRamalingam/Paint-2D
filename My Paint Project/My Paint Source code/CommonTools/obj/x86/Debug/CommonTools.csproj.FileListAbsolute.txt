@@ -1,0 +1,19 @@
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Debug\CommonTools.exe
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Debug\CommonTools.pdb
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Debug\System.Data.SQLite.dll
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Debug\System.Data.SQLite.pdb
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.FeedBack.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.Properties.Resources.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.SQLlite.DBinterface.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.csproj.GenerateResource.Cache
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.exe
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Debug\CommonTools.pdb
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\bin\Debug\CommonTools.exe
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\bin\Debug\CommonTools.pdb
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.FeedBack.resources
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.Properties.Resources.resources
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.SQLlite.DBinterface.resources
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.csproj.GenerateResource.Cache
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.exe
+G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x86\Debug\CommonTools.pdb

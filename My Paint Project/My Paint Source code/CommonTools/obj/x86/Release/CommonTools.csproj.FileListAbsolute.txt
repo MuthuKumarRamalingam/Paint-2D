@@ -1,0 +1,11 @@
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Release\CommonTools.exe
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Release\CommonTools.pdb
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Release\System.Data.SQLite.dll
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\bin\Release\System.Data.SQLite.pdb
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.csprojResolveAssemblyReference.cache
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.FeedBack.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.Properties.Resources.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.SQLlite.DBinterface.resources
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.csproj.GenerateResource.Cache
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.exe
+C:\Users\USER\Desktop\Draw 2D shapes Project solution\CommonTools\obj\x86\Release\CommonTools.pdb
