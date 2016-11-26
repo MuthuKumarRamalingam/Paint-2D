@@ -1,6 +1,15 @@
-My paint is Drawing tool that enhace your Experience by draw basic shapes like Line, Rectangle, Circle, etc and Save it as File.
+My Paint
 
-note: Please click on "MyDevelopment\My Paint Project\My Paint Portable Application\MyPaint.exe" to begin
+https://github.com/Muthukumar2244/MyDevelopment/
+
+Description :
+	-My Paint is Drawing tool that enhance your Experience by draw basic Geometric shapes like 
+
+Line, Rectangle, Circle, etc 
+	-Save/Open it as JSON and store in File.
+
+Versions:
+	My Paint v2.1.0.0 - Beta
+
+Send ur Feedback to "muthu.comp@yahoo.com"
  
-Send ur Feedback to 
-muthu.comp@yahoo.com
