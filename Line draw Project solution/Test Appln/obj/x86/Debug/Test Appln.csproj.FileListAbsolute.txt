@@ -1,7 +1,0 @@
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\bin\Debug\Test Appln.exe
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\bin\Debug\Test Appln.pdb
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\obj\x86\Debug\Test_Appln.Form1.resources
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\obj\x86\Debug\Test_Appln.Properties.Resources.resources
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\obj\x86\Debug\Test Appln.csproj.GenerateResource.Cache
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\obj\x86\Debug\Test Appln.exe
-C:\Users\USER\Desktop\Line draw Project solution\Test Appln\obj\x86\Debug\Test Appln.pdb
