@@ -32,6 +32,7 @@
             this.rtxtQry = new System.Windows.Forms.RichTextBox();
             this.btnReader = new System.Windows.Forms.Button();
             this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.btnCheck = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,11 +73,22 @@
             this.dgvResult.Size = new System.Drawing.Size(747, 274);
             this.dgvResult.TabIndex = 2;
             // 
+            // btnCheck
+            // 
+            this.btnCheck.Location = new System.Drawing.Point(604, 97);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(75, 23);
+            this.btnCheck.TabIndex = 3;
+            this.btnCheck.Text = "btnCheck";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
             // DBinterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 416);
+            this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.dgvResult);
             this.Controls.Add(this.rtxtQry);
             this.Controls.Add(this.btnReader);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.RichTextBox rtxtQry;
         private System.Windows.Forms.Button btnReader;
         private System.Windows.Forms.DataGridView dgvResult;
+        private System.Windows.Forms.Button btnCheck;
     }
 }

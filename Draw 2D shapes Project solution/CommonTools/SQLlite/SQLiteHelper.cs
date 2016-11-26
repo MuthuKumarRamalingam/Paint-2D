@@ -9,16 +9,16 @@ using System.IO;
 
 namespace CommonTools
 {
-    public class SQLiteHelper
+    public class SQLiteHelper : IDisposable
     {
-        private static string connecionString = string.Empty;
+        private readonly string connecionString = string.Empty;
+        private SQLiteConnection connection;
 
         public SQLiteHelper(string dbpath, bool useAsConnectionString = false)
         {
             if (useAsConnectionString)
             {
                 connecionString = dbpath;
-
             }
             else
             {
@@ -27,95 +27,167 @@ namespace CommonTools
 
                 connecionString = "Data Source = " + dbpath;
             }
+
+            CreateConnection(connecionString);
         }
 
-        private static SQLiteConnection CreateConnection(string connectionstr)
+
+        public static IEnumerable<SQLiteParameter> GenerateParameter(Dictionary<string, object> parameter)
+        {
+            List<SQLiteParameter> sqlParam = new List<SQLiteParameter>();
+            if (parameter.IsNotNull())
+            {
+                foreach (KeyValuePair<string, object> eachpair in parameter)
+                {
+                    sqlParam.Add(new SQLiteParameter(eachpair.Key, eachpair.Value));
+                }
+            }
+
+            return sqlParam;
+        }
+
+        public int ExecuteNonQuery(string qry, IEnumerable<SQLiteParameter> parameters = null, bool useTransaction = true)
+        {
+            int result = -1;
+            using (SQLiteCommand command = CreateCommand(qry, parameters, useTransaction))
+            {
+                try
+                {
+                    result = command.ExecuteNonQuery();
+
+                    if (useTransaction)
+                        command.Transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    if (useTransaction)
+                        command.Transaction.Rollback();
+
+                    throw;
+                }
+            }
+
+            return result;
+        }
+
+
+        public T ExecuteScalar<T>(string qry, IEnumerable<SQLiteParameter> parameters = null)
+        {
+            return (T)ExecuteScalar(qry, parameters);
+        }
+
+        public object ExecuteScalar(string qry, IEnumerable<SQLiteParameter> parameters = null)
+        {
+            using (SQLiteCommand command = CreateCommand(qry, parameters))
+            {
+                return command.ExecuteScalar();
+            }
+        }
+
+        public SQLiteDataReader ExecuteReader(string qry, IEnumerable<SQLiteParameter> parameters = null)
+        {
+            using (SQLiteCommand command = CreateCommand(qry, parameters))
+            {
+                return command.ExecuteReader();
+            }
+        }
+
+        public DataTable GetTable(string qry, IEnumerable<SQLiteParameter> parameters = null)
+        {
+            using (SQLiteCommand command = CreateCommand(qry, parameters))
+            {
+                DataTable dt = new DataTable();
+                SQLiteDataAdapter dataAdapt = new SQLiteDataAdapter(command);
+                dataAdapt.Fill(dt);
+                return dt;
+            }
+        }
+
+        
+        public void BeginTransaction()
+        {
+            ExecuteNonQuery("Begin Transaction", useTransaction: false);
+        }
+
+        public void Commit()
+        {
+            ExecuteNonQuery("Commit", useTransaction: false);
+        }
+
+        public void RollBack()
+        {
+            ExecuteNonQuery("RollBack");
+        }
+
+        private bool CreateConnection(string connectionstr)
         {
             try
             {
-                SQLiteConnection connection = new SQLiteConnection(connectionstr);
-                return connection.OpenAndReturn();
+                connection = new SQLiteConnection(connectionstr);
+                return openConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unable Connect check DB path", ex.ToString());
-                return null;
+                MessageBox.Show(ex.ToString(), "Unable Connect check DB path");
+                throw;
             }
         }
 
-        private static SQLiteCommand CreateCommand(SQLiteConnection connection, string qry, List<SQLiteParameter> parameters = null)
+        private bool openConnection()
         {
-            SQLiteCommand command = new SQLiteCommand(qry, connection);
+            if (connection.IsNull())
+                return false;
+
+            if (connection.State == ConnectionState.Open)
+                return true;
+            else
+            {
+                connection.Open();
+                return true;
+            }
+        }
+
+        private SQLiteCommand CreateCommand(string qry, IEnumerable<SQLiteParameter> parameters, bool useTransaction = false)
+        {
+            if (qry.IsNullorEmpty())
+                throw new Exception("Query must not be Empty");
+
+            openConnection();
+
+            SQLiteCommand command;
+
+            command = new SQLiteCommand(qry, connection);
+            if (useTransaction)
+                command.Transaction = connection.BeginTransaction();
 
             if (parameters != null)
             {
-                for (int i = 0; i < parameters.Count; i++)
-                    command.Parameters.Add(parameters[i]);
+                foreach (SQLiteParameter eachParam in parameters)
+                    command.Parameters.Add(eachParam);
             }
 
             return command;
         }
 
 
-        public object ExecuteScalar(string qry, List<SQLiteParameter> parameters = null)
+        public void CloseConnection()
         {
-            object result = null;
-
-            using (SQLiteConnection connection = CreateConnection(connecionString))
+            if (connection.IsNotNull())
             {
-                using (SQLiteCommand command = CreateCommand(connection, qry, parameters))
-                {
-                    result = command.ExecuteScalar();
-                    command.Dispose();
-                }
-
                 connection.Close();
-            }
-
-            return result;
-        }
-
-        public SQLiteDataReader ExecuteReader(string qry, List<SQLiteParameter> parameters = null)
-        {
-            using (SQLiteConnection connection = CreateConnection(connecionString))
-            {
-                using (SQLiteCommand command = CreateCommand(connection, qry, parameters))
-                {
-                    return command.ExecuteReader();
-                }
+                connection.Dispose();
+                connection = null;
             }
         }
 
-        public int ExecuteNonQuery(string qry, List<SQLiteParameter> parameters = null)
+        void IDisposable.Dispose()
         {
-            int result = -1;
-            using (SQLiteConnection connection = CreateConnection(connecionString))
-            {
-                using (SQLiteCommand command = CreateCommand(connection, qry, parameters))
-                {
-                    result = command.ExecuteNonQuery();
-                    command.Dispose();
-                }
-                connection.Close();
-            }
-            return result;
+            CloseConnection();
         }
 
-        public DataTable GetTable(string qry, List<SQLiteParameter> parameters = null)
+        ~SQLiteHelper()
         {
-            DataTable dt = new DataTable();
-            using (SQLiteConnection connection = CreateConnection(connecionString))
-            {
-                using (SQLiteCommand command = CreateCommand(connection, qry, parameters))
-                {
-                    SQLiteDataAdapter dataAdapt = new SQLiteDataAdapter(command);
-                    dataAdapt.Fill(dt);
-                    command.Dispose();
-                }
-                connection.Close();
-            }
-
-            return dt;
+            //this.Dispose();
         }
 
     }

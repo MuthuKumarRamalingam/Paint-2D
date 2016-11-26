@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace CommonTools.SQLlite
 {
@@ -17,12 +18,29 @@ namespace CommonTools.SQLlite
         public DBinterface()
         {
             InitializeComponent();
-            connString = @"Data Source=C:\Users\USER\Desktop\temp.db";
+            connString = @"C:\Users\USER\Desktop\temp.db";
         }
 
         private void btnReader_Click(object sender, EventArgs e)
         {
             reader();
+        }
+
+        private void btnNonQry_Click(object sender, EventArgs e)
+        {
+            nonQry();
+        }
+
+        private void rtxtQry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F9)
+            {
+                reader();
+            }
+            else if (e.KeyCode == Keys.F10)
+            {
+                nonQry();
+            }
         }
 
 
@@ -37,19 +55,16 @@ namespace CommonTools.SQLlite
                     return;
                 }
 
-                SQLiteHelper liteHelper = new SQLiteHelper(connString);
-                dgvResult.DataSource = liteHelper.GetTable(qry);
-                dgvResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
+                {
+                    dgvResult.DataSource = liteHelper.GetTable(qry);
+                    dgvResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void btnNonQry_Click(object sender, EventArgs e)
-        {
-            nonQry();
         }
 
         void nonQry()
@@ -63,10 +78,11 @@ namespace CommonTools.SQLlite
                     return;
                 }
 
-                SQLiteHelper liteHelper = new SQLiteHelper(connString);
-                int result = liteHelper.ExecuteNonQuery(qry);
-
-                MessageBox.Show(string.Format("{0} Rows affected", result));
+                using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
+                {
+                    int result = liteHelper.ExecuteNonQuery(qry);
+                    MessageBox.Show(string.Format("{0} Rows affected", result));
+                }
 
             }
             catch (Exception ex)
@@ -75,16 +91,30 @@ namespace CommonTools.SQLlite
             }
         }
 
-        private void rtxtQry_KeyDown(object sender, KeyEventArgs e)
+        private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.F9)
+            Stopwatch st = new Stopwatch();
+            st.Restart();
+
+            using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
             {
-                reader();
+                 liteHelper.BeginTransaction();
+
+                for (int i = 0; i < 50; i++)
+                {
+                    string qry = "insert into numcheck values(@1)";
+                    Dictionary<string, object> param = new Dictionary<string, object>();
+                    param.Add("@1", i);
+
+                    liteHelper.ExecuteNonQuery(qry, SQLiteHelper.GenerateParameter(param), false);
+                }
+
+                liteHelper.Commit();
             }
-            else if (e.KeyCode == Keys.F10)
-            {
-                nonQry();
-            }
+            st.Stop();
+
+            long timespan = st.ElapsedMilliseconds;
+            MessageBox.Show("elapsed time " + timespan);
         }
     }
 }
