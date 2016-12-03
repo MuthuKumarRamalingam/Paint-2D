@@ -10,7 +10,7 @@ namespace MyPaint
     /// <summary>
     /// Line in 2D window.
     /// </summary>
-    class LineInfo : ShapeInfo, Ishapes
+    class LineInfo : ShapeInfo
     {
         #region Properties
         /// <summary>
@@ -21,7 +21,7 @@ namespace MyPaint
         /// <summary>
         /// End Point in 2d Window.
         /// </summary>
-        public Point EndPoint { get; set; } 
+        public Point EndPoint { get; set; }
         #endregion
 
         #region Constructor
@@ -59,20 +59,17 @@ namespace MyPaint
             this.StPoint = new Point(stPointX, stPointY);
             this.EndPoint = new Point(endPointX, endPointY);
         }
-        
+
         #endregion
 
         #region Ishapes Members
 
-        /// <summary>
-        /// Defines How to Draw 
-        /// </summary>
-        /// <param name="Graphics"></param>
-        void Ishapes.Render(Graphics Graphics)
+        public override void Render(Graphics Graphics)
         {
             Graphics.DrawLine(GetPen(), StPoint, EndPoint);
         }
 
         #endregion
+
     }
 }

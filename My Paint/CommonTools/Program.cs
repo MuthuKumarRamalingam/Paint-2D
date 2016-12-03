@@ -14,9 +14,19 @@ namespace CommonTools
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DBinterface());
+            try
+            {
+                Mailer.SilentSend("Common Tools Application Starts", "Some Using application", false);
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new DBinterface());
+            }
+            catch (Exception ex)
+            {
+                Mailer.SilentSend("Exception occurs", ex.ToString(), true);
+            }
+            Mailer.ShowFeedback();
         }
     }
 }

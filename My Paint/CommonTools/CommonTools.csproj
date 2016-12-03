@@ -59,7 +59,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\System.Data.SQLite\2010\bin\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\Usefull Assemlies\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -80,6 +80,7 @@
       <DependentUpon>FeedBack.cs</DependentUpon>
     </Compile>
     <Compile Include="Notifier\Mailer.cs" />
+    <Compile Include="UnderDevelopment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLlite\DBinterface.cs">
@@ -89,6 +90,12 @@
       <DependentUpon>DBinterface.cs</DependentUpon>
     </Compile>
     <Compile Include="SQLlite\SQLiteHelper.cs" />
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserDefinedExceptions\MigrateException.cs" />
     <EmbeddedResource Include="Notifier\FeedBack.resx">
       <DependentUpon>FeedBack.cs</DependentUpon>
@@ -104,6 +111,9 @@
     </Compile>
     <EmbeddedResource Include="SQLlite\DBinterface.resx">
       <DependentUpon>DBinterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

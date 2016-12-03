@@ -1,6 +1,6 @@
-﻿namespace MyPaint
+﻿namespace CommonTools
 {
-    partial class About
+    public partial class About
     {
         /// <summary>
         /// Required designer variable.

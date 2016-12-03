@@ -9,8 +9,10 @@ using System.IO;
 
 namespace CommonTools
 {
-    public class SQLiteHelper : IDisposable
+    public sealed class SQLiteHelper : IDisposable
     {
+        public static string ExecutablePathDB = Application.StartupPath + "\\DBCheck.db";
+
         private readonly string connecionString = string.Empty;
         private SQLiteConnection connection;
 
@@ -23,6 +25,14 @@ namespace CommonTools
             else
             {
                 if (!File.Exists(dbpath))
+                {
+                    DialogResult result = MessageBox.Show(string.Format("DB path specified Not Exist : {0} ,Do you want to create", dbpath), "Invalid DB path", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                        SQLiteConnection.CreateFile(dbpath);
+                }
+
+                if (!File.Exists(dbpath))
                     throw new Exception("Invalid DB path");
 
                 connecionString = "Data Source = " + dbpath;
@@ -32,19 +42,45 @@ namespace CommonTools
         }
 
 
-        public static IEnumerable<SQLiteParameter> GenerateParameter(Dictionary<string, object> parameter)
+        private bool CreateConnection(string connectionstr)
         {
-            List<SQLiteParameter> sqlParam = new List<SQLiteParameter>();
-            if (parameter.IsNotNull())
+            try
             {
-                foreach (KeyValuePair<string, object> eachpair in parameter)
-                {
-                    sqlParam.Add(new SQLiteParameter(eachpair.Key, eachpair.Value));
-                }
+                connection = new SQLiteConnection(connectionstr);
+                return openConnection();
             }
-
-            return sqlParam;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Unable Connect check DB path");
+                throw;
+            }
         }
+
+        private bool openConnection()
+        {
+            if (connection.IsNull())
+                return false;
+
+            if (connection.State == ConnectionState.Open)
+                return true;
+            else
+            {
+                connection.Open();
+                return true;
+            }
+        }
+
+        public void CloseConnection()
+        {
+            if (connection.IsNotNull())
+            {
+                connection.Close();
+                connection.Dispose();
+                connection = null;
+            }
+        }
+
+
 
         public int ExecuteNonQuery(string qry, IEnumerable<SQLiteParameter> parameters = null, bool useTransaction = true)
         {
@@ -58,7 +94,7 @@ namespace CommonTools
                     if (useTransaction)
                         command.Transaction.Commit();
                 }
-                catch (Exception ex)
+                catch
                 {
                     if (useTransaction)
                         command.Transaction.Rollback();
@@ -96,14 +132,14 @@ namespace CommonTools
         {
             using (SQLiteCommand command = CreateCommand(qry, parameters))
             {
-                DataTable dt = new DataTable();
                 SQLiteDataAdapter dataAdapt = new SQLiteDataAdapter(command);
+                DataTable dt = new DataTable();
                 dataAdapt.Fill(dt);
                 return dt;
             }
         }
 
-        
+
         public void BeginTransaction()
         {
             ExecuteNonQuery("Begin Transaction", useTransaction: false);
@@ -119,32 +155,19 @@ namespace CommonTools
             ExecuteNonQuery("RollBack");
         }
 
-        private bool CreateConnection(string connectionstr)
-        {
-            try
-            {
-                connection = new SQLiteConnection(connectionstr);
-                return openConnection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Unable Connect check DB path");
-                throw;
-            }
-        }
 
-        private bool openConnection()
+        public static IEnumerable<SQLiteParameter> GenerateParameter(Dictionary<string, object> parameter)
         {
-            if (connection.IsNull())
-                return false;
-
-            if (connection.State == ConnectionState.Open)
-                return true;
-            else
+            List<SQLiteParameter> sqlParam = new List<SQLiteParameter>();
+            if (parameter.IsNotNull())
             {
-                connection.Open();
-                return true;
+                foreach (KeyValuePair<string, object> eachpair in parameter)
+                {
+                    sqlParam.Add(new SQLiteParameter(eachpair.Key, eachpair.Value));
+                }
             }
+
+            return sqlParam;
         }
 
         private SQLiteCommand CreateCommand(string qry, IEnumerable<SQLiteParameter> parameters, bool useTransaction = false)
@@ -170,24 +193,15 @@ namespace CommonTools
         }
 
 
-        public void CloseConnection()
-        {
-            if (connection.IsNotNull())
-            {
-                connection.Close();
-                connection.Dispose();
-                connection = null;
-            }
-        }
 
-        void IDisposable.Dispose()
+        public void Dispose()
         {
             CloseConnection();
         }
 
         ~SQLiteHelper()
         {
-            //this.Dispose();
+            Dispose();
         }
 
     }

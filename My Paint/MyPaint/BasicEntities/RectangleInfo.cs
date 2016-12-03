@@ -7,7 +7,7 @@ using System.Drawing;
 namespace MyPaint
 {
     [Serializable]
-    class RectangleInfo : ShapeInfo, Ishapes
+    class RectangleInfo : ShapeInfo
     {
         public Point StPoint { get; set; }
         public Point EdPoint { get; set; }
@@ -18,18 +18,8 @@ namespace MyPaint
             InitRect(stPoint, endPoint, entityColor);
         }
 
-        private void InitRect(Point stPoint, Point endPoint, Color entityColor)
-        {
-            this.StPoint = stPoint;
-            this.EdPoint = endPoint;
-        }
 
-        private Rectangle GetRect()
-        {
-            return CommonHelper.GetRect(StPoint, EdPoint);
-        }
-
-        void Ishapes.Render(Graphics Graphics)
+        public override void Render(Graphics Graphics)
         {
             if (EntityType == MyPaint.EntityType.Rectangle)
             {
@@ -41,5 +31,18 @@ namespace MyPaint
                 Graphics.DrawEllipse(GetPen(), GetRect());
             }
         }
+
+        
+        private void InitRect(Point stPoint, Point endPoint, Color entityColor)
+        {
+            this.StPoint = stPoint;
+            this.EdPoint = endPoint;
+        }
+
+        private Rectangle GetRect()
+        {
+            return CommonHelper.GetRect(StPoint, EdPoint);
+        }
+
     }
 }

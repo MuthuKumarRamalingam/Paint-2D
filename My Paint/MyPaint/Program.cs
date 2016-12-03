@@ -16,14 +16,17 @@ namespace MyPaint
         {
             try
             {
+                Mailer.SilentSend("MyPaint Application Starts", "Some Using application", false);
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Drawing());
             }
             catch (Exception ex)
             {
-                Mailer.SendNotification(ex.ToString(), true);
+                Mailer.SilentSend("Exception Occurs", ex.ToString(), true);
             }
+            Mailer.ShowFeedback();
         }
     }
 }

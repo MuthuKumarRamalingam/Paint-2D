@@ -107,14 +107,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
     <Compile Include="BasicEntities\RectangleInfo.cs" />
-    <Compile Include="FileStructure\ShapesData.cs" />
+    <Compile Include="CoreStructure\FileDatainfo.cs" />
     <Compile Include="MyApplication\RenderInfo.cs" />
     <Compile Include="MyApplication\CommonHelper.cs" />
     <Compile Include="MyApplication\Drawing.cs">
@@ -123,14 +117,11 @@
     <Compile Include="MyApplication\Drawing.Designer.cs">
       <DependentUpon>Drawing.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicEntities\ShapeInfo.cs" />
-    <Compile Include="BasicEntities\Ishapes.cs" />
+    <Compile Include="CoreStructure\ShapeInfo.cs" />
+    <Compile Include="CoreStructure\Ishapes.cs" />
     <Compile Include="BasicEntities\LineInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MyApplication\Drawing.resx">
       <DependentUpon>Drawing.cs</DependentUpon>
     </EmbeddedResource>

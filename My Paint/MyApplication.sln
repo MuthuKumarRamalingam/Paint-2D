@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPaint", "Line draw\MyPaint.csproj", "{03BDBB1A-B431-4A69-8A7E-690F7486C038}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTools", "CommonTools\CommonTools.csproj", "{2CFE159E-77B9-4933-B023-CC34FE2C8986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPaint", "MyPaint\MyPaint.csproj", "{03BDBB1A-B431-4A69-8A7E-690F7486C038}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x64.ActiveCfg = Debug|x64
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x64.Build.0 = Debug|x64
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x86.ActiveCfg = Debug|x86
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x86.Build.0 = Debug|x86
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x64.ActiveCfg = Release|x64
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x64.Build.0 = Release|x64
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x86.ActiveCfg = Release|x86
-		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x86.Build.0 = Release|x86
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Debug|x64.ActiveCfg = Debug|x64
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Debug|x64.Build.0 = Debug|x64
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Debug|x86.ActiveCfg = Debug|x86
@@ -29,6 +21,14 @@ Global
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Release|x64.Build.0 = Release|x64
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Release|x86.ActiveCfg = Release|x86
 		{2CFE159E-77B9-4933-B023-CC34FE2C8986}.Release|x86.Build.0 = Release|x86
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x64.ActiveCfg = Debug|x64
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x64.Build.0 = Debug|x64
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x86.ActiveCfg = Debug|x86
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Debug|x86.Build.0 = Debug|x86
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x64.ActiveCfg = Release|x64
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x64.Build.0 = Release|x64
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x86.ActiveCfg = Release|x86
+		{03BDBB1A-B431-4A69-8A7E-690F7486C038}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

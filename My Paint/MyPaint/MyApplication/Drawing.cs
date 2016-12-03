@@ -12,6 +12,7 @@ using System.IO;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using CommonTools;
 
 
 namespace MyPaint
@@ -28,7 +29,6 @@ namespace MyPaint
 
         bool DrawMode = true;
         long ClicksCount = 0;
-        bool PauseRendering = false;
 
         #endregion
 
@@ -43,26 +43,11 @@ namespace MyPaint
         #endregion
 
 
-        #region default events
         private void PnlDraw_Paint(object sender, PaintEventArgs e)
         {
-            if (!PauseRendering)
-            {
-                if (DrawMode)
-                    RenderInfo.DrawSavedShapes();
-            }
-        }
+            if (DrawMode)
+                RenderInfo.DrawSavedShapes();
 
-        private void btnLine_Click(object sender, EventArgs e)
-        {
-            Mode = EntityType.Line;
-            DrawMode = false;
-
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void PnlDraw_MouseDown(object sender, MouseEventArgs e)
@@ -82,11 +67,6 @@ namespace MyPaint
             }
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void PnlDraw_MouseMove(object sender, MouseEventArgs e)
         {
             if (!DrawMode)
@@ -95,29 +75,16 @@ namespace MyPaint
                 {
                     Pt2 = e.Location;
                     RenderInfo.AddEntity(Pt1, Pt2, Mode, true);
-
-                    //switch (Mode)
-                    //{
-                    //    case EntityType.Line:
-                    //        RenderInfo.Graphics.DrawLine(RenderInfo.PenDraw, Pt1, Pt2);
-                    //        break;
-
-                    //    case EntityType.Ellipse:
-                    //        RenderInfo.Graphics.DrawEllipse(RenderInfo.PenDraw, CommonHelper.GetRect(Pt1, Pt2));
-                    //        Pen GoustPen = new Pen(Color.LawnGreen, 1f);
-                    //        RenderInfo.Graphics.DrawRectangle(GoustPen, CommonHelper.GetRect(Pt1, Pt2));
-                    //        break;
-
-                    //    case EntityType.Rectangle:
-                    //        RenderInfo.Graphics.DrawRectangle(RenderInfo.PenDraw, CommonHelper.GetRect(Pt1, Pt2));
-
-                    //        break;
-                    //    default:
-                    //        throw new NotImplementedException();
-                    //}
-
                 }
             }
+        }
+
+
+        private void btnLine_Click(object sender, EventArgs e)
+        {
+            Mode = EntityType.Line;
+            DrawMode = false;
+
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
@@ -126,17 +93,22 @@ namespace MyPaint
             DrawMode = false;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DrawMode = true;
-        }
-
         private void btnSquare_Click(object sender, EventArgs e)
         {
             Mode = EntityType.Rectangle;
             DrawMode = false;
         }
 
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DrawMode = true;
+        }
 
         private void BtnClearAll_Click(object sender, EventArgs e)
         {
@@ -149,34 +121,40 @@ namespace MyPaint
             }
         }
 
+
+
         private void btnColor_Click(object sender, EventArgs e)
         {
             ColorDialog ColorDlg = new ColorDialog();
-            PauseRendering = true;
+
             if (ColorDlg.ShowDialog() == DialogResult.OK)
             {
                 RenderInfo.PenColor = ColorDlg.Color;
 
                 btnPenColor.BackColor = RenderInfo.PenColor;
             }
-            PauseRendering = false;
+
         }
 
         private void BtnBackGrdColor_Click(object sender, EventArgs e)
         {
             ColorDialog ColorDlg = new ColorDialog();
-            PauseRendering = true;
+
             if (ColorDlg.ShowDialog() == DialogResult.OK)
             {
                 RenderInfo.BackgrdColor = ColorDlg.Color;
-                BtnBackGrdColor.BackColor = RenderInfo.BackgrdColor;
+                BtnBackGrdColor.BackColor = ColorDlg.Color;
             }
-            PauseRendering = false;
+
         }
+
+
+
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RenderInfo.OpenFile();
+            ClicksCount = 0;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,12 +166,6 @@ namespace MyPaint
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-        #endregion
-
-        private void Drawing_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,7 +183,17 @@ namespace MyPaint
 
         private void saveLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(RenderInfo.ShapesData.GetSaveLog());
+            MessageBox.Show(RenderInfo.fileDatas.GetSaveLog());
+        }
+
+        private void feedBackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mailer.ShowFeedback();
+        }
+
+        private void Drawing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Mailer.ShowFeedback();
         }
     }
 }

@@ -6,21 +6,16 @@ using System.Drawing;
 
 namespace MyPaint
 {
-    public enum EntityType
+    abstract class ShapeInfo : Ishapes
     {
-        Line,
-        Ellipse,
-        Rectangle,
-    }
-
-    class ShapeInfo
-    {
+        #region Public properties
         public Color EntityColor { get; set; }
         public long UniqueID { get; set; }
         public EntityType EntityType { get; set; }
 
-        private static long UniqueIDCounter = 0;
+        #endregion
 
+        #region Constructor
         public ShapeInfo()
         {
             // TODO: Complete member initialization
@@ -34,17 +29,28 @@ namespace MyPaint
             UniqueID = ++UniqueIDCounter;
         }
 
+        #endregion
 
         protected Pen GetPen()
         {
             return new Pen(EntityColor);
         }
 
+        public abstract void Render(Graphics Graphics);
+
+        private static long UniqueIDCounter = 0;
+
         internal static void ResetUniqueID()
         {
             UniqueIDCounter = 0;
         }
+
     }
 
-
+    internal enum EntityType
+    {
+        Line,
+        Ellipse,
+        Rectangle,
+    }
 }

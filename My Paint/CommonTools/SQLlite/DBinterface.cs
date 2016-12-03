@@ -13,12 +13,10 @@ namespace CommonTools.SQLlite
 {
     public partial class DBinterface : Form
     {
-        string connString = "";
 
         public DBinterface()
         {
             InitializeComponent();
-            connString = @"C:\Users\USER\Desktop\temp.db";
         }
 
         private void btnReader_Click(object sender, EventArgs e)
@@ -48,17 +46,16 @@ namespace CommonTools.SQLlite
         {
             try
             {
-                string qry = rtxtQry.SelectedText;
-                if (qry.IsNullorEmpty())
-                {
-                    MessageBox.Show("Please select text to Execute");
-                    return;
-                }
+                string connString, qry;
+                bool useAsConnectionString;
 
-                using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
+                if (GetConnectionString(out connString, out useAsConnectionString, out qry))
                 {
-                    dgvResult.DataSource = liteHelper.GetTable(qry);
-                    dgvResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                    using (SQLiteHelper liteHelper = new SQLiteHelper(connString, useAsConnectionString))
+                    {
+                        dgvResult.DataSource = liteHelper.GetTable(qry);
+                        dgvResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                    }
                 }
             }
             catch (Exception ex)
@@ -71,19 +68,17 @@ namespace CommonTools.SQLlite
         {
             try
             {
-                string qry = rtxtQry.SelectedText;
-                if (qry.IsNullorEmpty())
-                {
-                    MessageBox.Show("Please select text to Execute");
-                    return;
-                }
+                string connString, qry;
+                bool useAsConnectionString;
 
-                using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
+                if (GetConnectionString(out connString, out useAsConnectionString, out qry))
                 {
-                    int result = liteHelper.ExecuteNonQuery(qry);
-                    MessageBox.Show(string.Format("{0} Rows affected", result));
+                    using (SQLiteHelper liteHelper = new SQLiteHelper(connString, useAsConnectionString))
+                    {
+                        int result = liteHelper.ExecuteNonQuery(qry, useTransaction: true);
+                        MessageBox.Show(string.Format("{0} Rows affected", result));
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -91,30 +86,55 @@ namespace CommonTools.SQLlite
             }
         }
 
-        private void btnCheck_Click(object sender, EventArgs e)
+        private void btnBrowse_Click(object sender, EventArgs e)
         {
-            Stopwatch st = new Stopwatch();
-            st.Restart();
-
-            using (SQLiteHelper liteHelper = new SQLiteHelper(connString))
+            string path;
+            if (FileOperations.GetOpenFilePath(out path, ".DB", "SqlLiteDB"))
             {
-                 liteHelper.BeginTransaction();
+                txtDBpath.Text = path;
+            }
+        }
 
-                for (int i = 0; i < 50; i++)
+        private bool GetConnectionString(out string connectionstring, out bool useAsConnectionString, out string qry)
+        {
+            connectionstring = string.Empty;
+            useAsConnectionString = false;
+
+            qry = rtxtQry.SelectedText;
+            if (qry.IsNullorEmpty())
+            {
+                MessageBox.Show("Please select text to Execute");
+                return false;
+            }
+            else
+            {
+                if (rbtnConnectionString.Checked)
                 {
-                    string qry = "insert into numcheck values(@1)";
-                    Dictionary<string, object> param = new Dictionary<string, object>();
-                    param.Add("@1", i);
-
-                    liteHelper.ExecuteNonQuery(qry, SQLiteHelper.GenerateParameter(param), false);
+                    connectionstring = txtConnectionString.Text;
+                    useAsConnectionString = true;
+                }
+                else if (rbtnDBpath.Checked)
+                {
+                    connectionstring = txtDBpath.Text;
+                    useAsConnectionString = false;
                 }
 
-                liteHelper.Commit();
+                if (connectionstring.IsNotNullorEmpty())
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Connection string");
+                    return false;
+                }
             }
-            st.Stop();
+        }
 
-            long timespan = st.ElapsedMilliseconds;
-            MessageBox.Show("elapsed time " + timespan);
+        private void DBinterface_Load(object sender, EventArgs e)
+        {
+            txtDBpath.Text = SQLiteHelper.ExecutablePathDB;
+            rbtnDBpath.Checked = true;
         }
     }
 }

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MyPaint")]
-[assembly: AssemblyDescription("This Software used to draw Geomentries like Line, Rectange, Eclipse using Graphics. Send your Feedback to muthu.comp@yahoo.com or Call 9698067098")]
+[assembly: AssemblyDescription("My Paint is Drawing tool that enhance your Experience by draw basic Geometric shapes like Line, Rectangle, Circle, etc. \nSave/Open it as JSON and store in File.\n Send ur Feedback to \"muthu.comp@yahoo.com\"")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Muthu")]
 [assembly: AssemblyProduct("MyPaint")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCopyright("Copyright © Muthu 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.0.0")]
-[assembly: AssemblyFileVersion("2.1.0.0")]
+[assembly: AssemblyVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.0.0")]

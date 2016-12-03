@@ -8,39 +8,49 @@ using CommonTools;
 
 namespace MyPaint
 {
-    class ShapesData
+    /// <summary>
+    /// Storing Datas in File based Structure
+    /// </summary>
+    class FileDatainfo
     {
+        #region Private variables
+        private const string extType = ".MyExt";
+        private const string extName = "MyExtension";
         private const int currentVersion = 1;
-
         private int version = currentVersion;
 
+        #endregion
+
+        #region Public propeties
         public int Version
         {
             get { return version; }
             set { version = value; }
         }
-
         public Dictionary<long, ShapeInfo> Shapes { get; set; }
-
         public List<string> SavedTime { get; set; }
 
+        #endregion
 
-        public ShapesData()
+        #region Constructor
+        public FileDatainfo()
         {
             ClearAll();
         }
 
+        #endregion
+
+        #region Public Methods
 
         internal void SaveFile()
         {
-
             SavedTime.Add(DateTime.Now.ToString());
 
             JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
             string Data = JsonConvert.SerializeObject(this, settings);
 
             string path;
-            if (FileOperations.GetSavePath(out path))
+            if (FileOperations.GetSavePath(out path, extType, extType))
             {
                 if (FileOperations.Write(path, Data, true))
                 {
@@ -50,20 +60,10 @@ namespace MyPaint
             }
         }
 
-        internal void ClearAll(bool resetTime = true)
-        {
-            Shapes = new Dictionary<long, ShapeInfo>();
-            ShapeInfo.ResetUniqueID();
-
-            if (resetTime)
-                SavedTime = new List<string>();
-        }
-
-
         internal void OpenFile()
         {
             string path;
-            if (FileOperations.GetOpenFilePath(out path))
+            if (FileOperations.GetOpenFilePath(out path, extType, extType))
             {
                 string Data;
                 if (FileOperations.Read(path, out Data))
@@ -75,29 +75,16 @@ namespace MyPaint
 
         }
 
-        private void loadData(string data)
+        internal void ClearAll(bool resetTime = true)
         {
-            if (data.IsNotNullorEmpty())
-            {
-                JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
-                JsonConvert.PopulateObject(data, this, settings);
-                versionMigrate();
-            }
+            Shapes = new Dictionary<long, ShapeInfo>();
+            ShapeInfo.ResetUniqueID();
+
+            if (resetTime)
+                SavedTime = new List<string>();
         }
 
-        private void versionMigrate()
-        {
-            switch (version)
-            {
-                case 1:
-
-                    break;
-                default:
-                    throw new MigrateException(currentVersion, version);
-            }
-        }
-
-        public string GetSaveLog()
+        internal string GetSaveLog()
         {
             StringBuilder message = new StringBuilder();
             if (SavedTime.Count > 0)
@@ -116,5 +103,29 @@ namespace MyPaint
             return message.ToString();
         }
 
+        #endregion
+
+        #region Private Methods
+        private void loadData(string data)
+        {
+            if (data.IsNotNullorEmpty())
+            {
+                JsonSerializerSettings settings = new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All };
+                JsonConvert.PopulateObject(data, this, settings);
+                versionMigrate();
+            }
+        }
+
+        private void versionMigrate()
+        {
+            switch (version)
+            {
+                case 1:
+                    break;
+                default:
+                    throw new MigrateException(currentVersion, version);
+            }
+        }
+        #endregion
     }
 }
