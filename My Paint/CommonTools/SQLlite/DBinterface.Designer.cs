@@ -33,12 +33,13 @@
             this.btnReader = new System.Windows.Forms.Button();
             this.dgvResult = new System.Windows.Forms.DataGridView();
             this.grpConnectionString = new System.Windows.Forms.GroupBox();
-            this.rbtnDBpath = new System.Windows.Forms.RadioButton();
-            this.txtDBpath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rbtnConnectionString = new System.Windows.Forms.RadioButton();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
+            this.rbtnConnectionString = new System.Windows.Forms.RadioButton();
+            this.txtDBpath = new System.Windows.Forms.TextBox();
+            this.rbtnDBpath = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.grpConnectionString.SuspendLayout();
             this.SuspendLayout();
@@ -89,28 +90,10 @@
             this.grpConnectionString.Controls.Add(this.rbtnDBpath);
             this.grpConnectionString.Location = new System.Drawing.Point(13, 13);
             this.grpConnectionString.Name = "grpConnectionString";
-            this.grpConnectionString.Size = new System.Drawing.Size(740, 74);
+            this.grpConnectionString.Size = new System.Drawing.Size(653, 74);
             this.grpConnectionString.TabIndex = 3;
             this.grpConnectionString.TabStop = false;
             this.grpConnectionString.Text = "Connection";
-            // 
-            // rbtnDBpath
-            // 
-            this.rbtnDBpath.AutoSize = true;
-            this.rbtnDBpath.Location = new System.Drawing.Point(31, 20);
-            this.rbtnDBpath.Name = "rbtnDBpath";
-            this.rbtnDBpath.Size = new System.Drawing.Size(64, 17);
-            this.rbtnDBpath.TabIndex = 0;
-            this.rbtnDBpath.TabStop = true;
-            this.rbtnDBpath.Text = "DB path";
-            this.rbtnDBpath.UseVisualStyleBackColor = true;
-            // 
-            // txtDBpath
-            // 
-            this.txtDBpath.Location = new System.Drawing.Point(137, 19);
-            this.txtDBpath.Name = "txtDBpath";
-            this.txtDBpath.Size = new System.Drawing.Size(416, 20);
-            this.txtDBpath.TabIndex = 1;
             // 
             // btnBrowse
             // 
@@ -122,14 +105,12 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // label1
+            // txtConnectionString
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Enter Query Here";
+            this.txtConnectionString.Location = new System.Drawing.Point(137, 42);
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.Size = new System.Drawing.Size(505, 20);
+            this.txtConnectionString.TabIndex = 1;
             // 
             // rbtnConnectionString
             // 
@@ -142,18 +123,49 @@
             this.rbtnConnectionString.Text = "ConnectionString";
             this.rbtnConnectionString.UseVisualStyleBackColor = true;
             // 
-            // txtConnectionString
+            // txtDBpath
             // 
-            this.txtConnectionString.Location = new System.Drawing.Point(137, 42);
-            this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(505, 20);
-            this.txtConnectionString.TabIndex = 1;
+            this.txtDBpath.Location = new System.Drawing.Point(137, 19);
+            this.txtDBpath.Name = "txtDBpath";
+            this.txtDBpath.Size = new System.Drawing.Size(416, 20);
+            this.txtDBpath.TabIndex = 1;
+            // 
+            // rbtnDBpath
+            // 
+            this.rbtnDBpath.AutoSize = true;
+            this.rbtnDBpath.Location = new System.Drawing.Point(31, 20);
+            this.rbtnDBpath.Name = "rbtnDBpath";
+            this.rbtnDBpath.Size = new System.Drawing.Size(64, 17);
+            this.rbtnDBpath.TabIndex = 0;
+            this.rbtnDBpath.TabStop = true;
+            this.rbtnDBpath.Text = "DB path";
+            this.rbtnDBpath.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Enter Query Here";
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(678, 33);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
+            this.btnAbout.TabIndex = 5;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // DBinterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 523);
+            this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grpConnectionString);
             this.Controls.Add(this.dgvResult);
@@ -184,5 +196,6 @@
         private System.Windows.Forms.TextBox txtDBpath;
         private System.Windows.Forms.RadioButton rbtnDBpath;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAbout;
     }
 }

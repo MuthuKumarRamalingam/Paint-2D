@@ -136,6 +136,12 @@ namespace CommonTools.SQLlite
             txtDBpath.Text = SQLiteHelper.ExecutablePathDB;
             rbtnDBpath.Checked = true;
         }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            About objabout = new About();
+            objabout.ShowDialog();
+        }
     }
 }
 

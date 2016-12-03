@@ -100,10 +100,11 @@ namespace CommonTools
                 {
 
                     retryCount++;
-                    Thread.Sleep(10000);//Retry after 10 secs.
 
                     if (retryCount > 3)
                         return false;
+
+                    Thread.Sleep(10000);//Retry after 10 secs.
                 }
             }
         }
