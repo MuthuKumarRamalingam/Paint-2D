@@ -107,12 +107,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
     <Compile Include="BasicEntities\RectangleInfo.cs" />
     <Compile Include="CoreStructure\FileDatainfo.cs" />
     <Compile Include="MyApplication\RenderInfo.cs" />
@@ -128,9 +122,6 @@
     <Compile Include="BasicEntities\LineInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MyApplication\Drawing.resx">
       <DependentUpon>Drawing.cs</DependentUpon>
     </EmbeddedResource>
