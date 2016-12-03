@@ -1,8 +1,0 @@
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\bin\x64\Debug\CommonTools.exe
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\bin\x64\Debug\CommonTools.pdb
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.FeedBack.resources
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.Properties.Resources.resources
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.SQLlite.DBinterface.resources
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.csproj.GenerateResource.Cache
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.exe
-G:\MyDevelopment\My Paint Project\My Paint Source code\CommonTools\obj\x64\Debug\CommonTools.pdb
