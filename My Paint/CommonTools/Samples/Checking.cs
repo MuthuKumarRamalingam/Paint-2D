@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CommonTools
 {
-    public class UnderDevelopment
+    public class Checking
     {
         public static void CheckLoops()
         {
@@ -34,7 +34,7 @@ namespace CommonTools
 
         public static void CheckTransactionSpeed()
         {
-            UnderDevelopment.CheckLoops();
+            Checking.CheckLoops();
 
             Stopwatch st = new Stopwatch();
             st.Restart();
