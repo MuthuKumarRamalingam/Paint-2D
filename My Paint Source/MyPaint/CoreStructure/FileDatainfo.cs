@@ -5,6 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using CommonTools;
+using System.Drawing;
 
 namespace MyPaint
 {
@@ -27,9 +28,12 @@ namespace MyPaint
             get { return version; }
             set { version = value; }
         }
+
         public Dictionary<long, ShapeInfo> Shapes { get; set; }
         public List<string> SavedTime { get; set; }
 
+        public Color PenColorDefault = Color.Red;
+        public Color BackgrdColorDefault = Color.White;
         #endregion
 
         #region Constructor

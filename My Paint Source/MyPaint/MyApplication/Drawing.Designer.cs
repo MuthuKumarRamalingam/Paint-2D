@@ -48,6 +48,7 @@
             this.btnPenColor = new System.Windows.Forms.Button();
             this.BtnBackGrdColor = new System.Windows.Forms.Button();
             this.PnlDraw = new System.Windows.Forms.Panel();
+            this.btnAddText = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,7 +156,7 @@
             // 
             this.settingsToolStripMenuItem1.Enabled = false;
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
-            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem1.Text = "Settings";
             this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
             // 
@@ -171,14 +172,14 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // feedBackToolStripMenuItem
             // 
             this.feedBackToolStripMenuItem.Name = "feedBackToolStripMenuItem";
-            this.feedBackToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.feedBackToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.feedBackToolStripMenuItem.Text = "FeedBack";
             this.feedBackToolStripMenuItem.Click += new System.EventHandler(this.feedBackToolStripMenuItem_Click);
             // 
@@ -236,6 +237,17 @@
             this.PnlDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlDraw_MouseDown);
             this.PnlDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlDraw_MouseMove);
             // 
+            // btnAddText
+            // 
+            this.btnAddText.Location = new System.Drawing.Point(493, 196);
+            this.btnAddText.Name = "btnAddText";
+            this.btnAddText.Size = new System.Drawing.Size(75, 23);
+            this.btnAddText.TabIndex = 2;
+            this.btnAddText.Text = "AddText";
+            this.btnAddText.UseVisualStyleBackColor = true;
+            this.btnAddText.Visible = false;
+            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
+            // 
             // Drawing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,6 +256,7 @@
             this.Controls.Add(this.BtnBackGrdColor);
             this.Controls.Add(this.btnPenColor);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnAddText);
             this.Controls.Add(this.btnSquare);
             this.Controls.Add(this.BtnClearAll);
             this.Controls.Add(this.btnExit);
@@ -284,5 +297,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem feedBackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveLogToolStripMenuItem;
+        private System.Windows.Forms.Button btnAddText;
     }
 }

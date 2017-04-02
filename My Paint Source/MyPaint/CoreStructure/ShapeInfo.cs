@@ -33,7 +33,12 @@ namespace MyPaint
 
         protected Pen GetPen()
         {
-            return new Pen(EntityColor);
+            return new Pen(GetBrush());
+        }
+
+        protected Brush GetBrush()
+        {
+            return new SolidBrush(EntityColor);
         }
 
         public abstract void Render(Graphics Graphics);
@@ -52,5 +57,6 @@ namespace MyPaint
         Line,
         Ellipse,
         Rectangle,
+        Text,
     }
 }

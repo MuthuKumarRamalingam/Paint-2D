@@ -9,9 +9,6 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.IO;
 
-using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
 using CommonTools;
 
 
@@ -58,6 +55,12 @@ namespace MyPaint
                 if (ClicksCount % 2 == 1)
                 {
                     Pt1 = e.Location;
+
+                    if (Mode == EntityType.Text)
+                    {
+                        ClicksCount++;
+                        RenderInfo.AddEntity(Pt1, Pt2, Mode, userText: "Sample");
+                    }
                 }
                 else
                 {
@@ -71,6 +74,8 @@ namespace MyPaint
         {
             if (!DrawMode)
             {
+
+
                 if (ClicksCount % 2 == 1)
                 {
                     Pt2 = e.Location;
@@ -99,6 +104,11 @@ namespace MyPaint
             DrawMode = false;
         }
 
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            Mode = EntityType.Text;
+            DrawMode = false;
+        }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -129,9 +139,9 @@ namespace MyPaint
 
             if (ColorDlg.ShowDialog() == DialogResult.OK)
             {
-                RenderInfo.PenColor = ColorDlg.Color;
+                RenderInfo.fileDatas.PenColorDefault = ColorDlg.Color;
 
-                btnPenColor.BackColor = RenderInfo.PenColor;
+                btnPenColor.BackColor = RenderInfo.fileDatas.PenColorDefault;
             }
 
         }
@@ -142,7 +152,7 @@ namespace MyPaint
 
             if (ColorDlg.ShowDialog() == DialogResult.OK)
             {
-                RenderInfo.BackgrdColor = ColorDlg.Color;
+                RenderInfo.fileDatas.BackgrdColorDefault = ColorDlg.Color;
                 BtnBackGrdColor.BackColor = ColorDlg.Color;
             }
 
@@ -195,5 +205,6 @@ namespace MyPaint
         {
             //Mailer.ShowFeedback();
         }
+
     }
 }

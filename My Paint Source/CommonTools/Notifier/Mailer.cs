@@ -10,11 +10,14 @@ namespace CommonTools
 {
     public class Mailer
     {
-        public static bool ShowFeedback()
+        public static void ShowFeedback()
         {
+#if DEBUG
+            //          return;
+#endif
             FeedBack feedback = new FeedBack();
             feedback.ShowDialog();
-            return true;
+
         }
 
         public static void SilentSend(string subject, string content, bool displayMessage = false)
@@ -22,6 +25,9 @@ namespace CommonTools
 
             if (displayMessage)
                 MessageBox.Show(content);
+#if DEBUG
+            //            return;
+#endif
 
             try
             {

@@ -11,28 +11,17 @@ namespace MyPaint
     class RenderInfo
     {
         public FileDatainfo fileDatas;
-
-        private Graphics Graphics;
-        private Bitmap bmp;
-
-        public static Color PenColor = Color.Red;
-        public Color BackgrdColor = Color.White;
-
-        private Size areaSize;
         private Panel PnlDraw;
 
         internal RenderInfo(Panel paintPanel)
         {
             PnlDraw = paintPanel;
-
-            this.areaSize = paintPanel.Size;
             fileDatas = new FileDatainfo();
         }
 
-
-        internal void AddEntity(Point stPoint, Point endPoint, EntityType entityType, bool tempEntity = false)
+        internal void AddEntity(Point stPoint, Point endPoint, EntityType entityType, bool tempEntity = false,string userText="")
         {
-            Color entityColor = PenColor;
+            Color entityColor = fileDatas.PenColorDefault;
 
             ShapeInfo EInfo = null;
             switch (entityType)
@@ -55,6 +44,11 @@ namespace MyPaint
                         EInfo = new RectangleInfo(stPoint, endPoint, entityColor, entityType);
                     }
                     break;
+                case EntityType.Text:
+                    {
+                        EInfo = new TextInfo(stPoint, userText, new Font("Arial", 10), entityColor);
+                    }
+                    break;
                 default:
                     throw new NotImplementedException(entityType.ToString());
             }
@@ -62,21 +56,10 @@ namespace MyPaint
             if (!tempEntity)
                 fileDatas.Shapes.Add(EInfo.UniqueID, EInfo);
 
-            DrawSavedShapes();
+            Graphics Graphics = DrawSavedShapes();
 
             if (tempEntity)
                 EInfo.Render(Graphics);
-        }
-
-        internal Bitmap DrawSavedShapes()
-        {
-            ClearGraphicsPanel();
-
-            Render(Graphics);
-
-            PnlDraw.BackgroundImage = bmp;
-
-            return bmp;
         }
 
 
@@ -99,24 +82,33 @@ namespace MyPaint
         }
 
 
-        private Bitmap ClearGraphicsPanel()
+        internal Graphics DrawSavedShapes()
         {
-            PnlDraw.BackColor = BackgrdColor;
-            bmp = new Bitmap(areaSize.Width, areaSize.Height);
-            Graphics = Graphics.FromImage(bmp);
+            Graphics Graphics = ClearGraphicsPanel();
 
-            return bmp;
+            Render(Graphics);
+
+            return Graphics;
         }
 
-        private Bitmap Render(Graphics Graphics)
+        private Graphics ClearGraphicsPanel()
+        {
+            Bitmap bmp = new Bitmap(PnlDraw.Size.Width, PnlDraw.Size.Height);
+            Graphics Graphics = Graphics.FromImage(bmp);
+
+            PnlDraw.BackColor = fileDatas.BackgrdColorDefault;
+            PnlDraw.BackgroundImage = bmp;
+
+            return Graphics;
+        }
+
+        private void Render(Graphics Graphics)
         {
             foreach (KeyValuePair<long, ShapeInfo> eachEntity in fileDatas.Shapes)
             {
                 ShapeInfo shap = eachEntity.Value;
                 shap.Render(Graphics);
             }
-
-            return bmp;
         }
 
     }
