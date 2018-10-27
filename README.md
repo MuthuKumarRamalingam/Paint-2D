@@ -1,4 +1,4 @@
-https://github.com/Muthukumar2244/MyDevelopment/
+https://github.com/Muthukumar2244/MyPaint/
 
 Application 1 : My Paint
 
@@ -13,5 +13,5 @@ Description :
 	-Common Tools gives basic tools required for New Project
 
 
-Send ur Feedback to "muthu.comp@yahoo.com"
+Send ur Feedback to "Muthukumar.Ping.com"
  
